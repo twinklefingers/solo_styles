@@ -1,7 +1,9 @@
 /* ------------------------------------------------------------- */
 /*                        Global Styles                          */
 /* ------------------------------------------------------------- */
+
 .black {
+    /*box-shadow: inset 0 0 0 1000px black; */
     background-color: rgb(0, 0, 0);
 }
 .red {
@@ -26,11 +28,20 @@
     background-color: rgb(255, 255, 255);
 }
 .chooseGrid {
-    z-index: 0;
+    /*z-index: 0;*/
     background-color: hsla(0, 0%, 100%, .8);
 }
+.optionsButton {
+    background-color: #7dfe90;
+}
+.resetButton {
+    background-color: tomato;
+}
 .desktopHeader {
-  display: block;
+    display: block;
+}
+.header {
+  font-size: 2em;
 }
 .chooseGrid-hide {
     height: 0;
@@ -51,6 +62,8 @@
 #gridCanvas {
     width: 90%;
     margin: 0 auto;
+    padding: 1%;
+    /*padding-right: 5%;*/
     background-image: url("../imgs/Cat.jpg");
     background-size: cover;
     background-position: center;
@@ -58,12 +71,42 @@
     overflow-x: scroll;
     white-space: nowrap;
 }
+#color {
+    border: thin solid black;
+    float: left;
+    height: 100%;
+    width: 12.5%;
+}
+
+/* ------------------------------------------------------------- */
+/*                        Desktop Styles                         */
+/* ------------------------------------------------------------- */
+@media (min-width: 768px) {
+  #colorPalette {
+      margin: 1%;
+      margin-top: 1.5%;
+      height: 30px;
+      /*z-index: 0;*/
+  }
+}
 /* ------------------------------------------------------------- */
 /*                         Print Styles                          */
 /* ------------------------------------------------------------- */
 
 @media print {
+  /*body {
+    -webkit-print-color-adjust: exact !important;
+  }
+  #gridCanvas div {
+    -webkit-print-color-adjust: exact !important;
+  }*/
+  .pixel {
+    /*-webkit-print-color-adjust: exact !important;*/
+    background-color: black !important;
+
+  }
     /* insert your style declarations here */
     .chooseGrid, #topBarButtons, #colorPalette {
         display: none;
     }
+}
