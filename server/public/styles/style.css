@@ -1,10 +1,6 @@
 /* ------------------------------------------------------------- */
 /*                        Global Styles                          */
 /* ------------------------------------------------------------- */
-body {
-    /*overflow: auto;*/
-}
-
 .black {
     background-color: rgb(0, 0, 0);
 }
@@ -43,9 +39,6 @@ body {
     opacity: 0;
 }
 .pixelCol {
-    /*float: left;*/
-    /*white-space: nowrap;*/
-    /*overflow: auto;*/
     display: inline-block;
 }
 .pixel {
@@ -54,24 +47,16 @@ body {
     height: 1.5em;
     width: 1.5em;
     background-color: white;
-    /*white-space: nowrap;*/
-    /*float: left;*/
-
 }
 #gridCanvas {
-  display: inline-block;
-    /*display: block;*/
-    white-space: nowrap;
-    /*overflow: auto;*/
-    /*background-image: url("../imgs/Cat.jpg");*/
-    /*background-size: cover;*/
-    /*background-position: center;*/
-    /*position: absolute;*/
-    /*z-index: -1;*/
-    border: medium solid magenta;
     width: 90%;
-    /*height: 100%;*/
     margin: 0 auto;
+    background-image: url("../imgs/Cat.jpg");
+    background-size: cover;
+    background-position: center;
+    border: medium solid magenta;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
 /* ------------------------------------------------------------- */
 /*                         Print Styles                          */
