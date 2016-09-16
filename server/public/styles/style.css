@@ -2,7 +2,7 @@
 /*                        Global Styles                          */
 /* ------------------------------------------------------------- */
 body {
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .black {
@@ -33,6 +33,9 @@ body {
     z-index: 0;
     background-color: hsla(0, 0%, 100%, .8);
 }
+.desktopHeader {
+  display: block;
+}
 .chooseGrid-hide {
     height: 0;
     width: 0;
@@ -40,10 +43,10 @@ body {
     opacity: 0;
 }
 .pixelCol {
-    float: left;
-    white-space: nowrap;
-    overflow: auto;
-    /*display: inline-block;*/
+    /*float: left;*/
+    /*white-space: nowrap;*/
+    /*overflow: auto;*/
+    display: inline-block;
 }
 .pixel {
     margin: 0 auto;
@@ -51,22 +54,24 @@ body {
     height: 1.5em;
     width: 1.5em;
     background-color: white;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
+    /*float: left;*/
 
 }
 #gridCanvas {
+  display: inline-block;
+    /*display: block;*/
     white-space: nowrap;
-    overflow: auto;
-    background-image: url("../imgs/Cat.jpg");
-    background-size: cover;
-    background-position: center;
+    /*overflow: auto;*/
+    /*background-image: url("../imgs/Cat.jpg");*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
     /*position: absolute;*/
     /*z-index: -1;*/
     border: medium solid magenta;
     width: 90%;
     /*height: 100%;*/
     margin: 0 auto;
-    padding: auto;
 }
 /* ------------------------------------------------------------- */
 /*                         Print Styles                          */

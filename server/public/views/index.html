@@ -21,30 +21,32 @@
 </head>
 
 <body>
-    <div class="col-md-3">
-        <h1 class="header">Knit Mattern Paker</h1>
-    </div>
-    <div class="col-md-4" id="colorPalette">
-        <!-- <small class="pickAColor"><em>  Pick A Color:</em></small> -->
-        <div id="color" class="black" onclick="pickColor('black')"> </div>
-        <div id="color" class="red" onclick="pickColor('red')"> </div>
-        <div id="color" class="orange" onclick="pickColor('orange')"> </div>
-        <div id="color" class="yellow" onclick="pickColor('yellow')"> </div>
-        <div id="color" class="green" onclick="pickColor('green')"> </div>
-        <div id="color" class="blue" onclick="pickColor('blue')"> </div>
-        <div id="color" class="purple" onclick="pickColor('purple')"> </div>
-        <div id="color" class="white" onclick="pickColor('white')"> </div>
-    </div>
+    <div class="desktopHeader container-fluid">
+        <div class="col-md-3">
+            <h1 class="header">Knit Mattern Paker</h1>
+        </div>
+        <div class="col-md-4" id="colorPalette">
+            <!-- <small class="pickAColor"><em>  Pick A Color:</em></small> -->
+            <div id="color" class="black" onclick="pickColor('black')"> </div>
+            <div id="color" class="red" onclick="pickColor('red')"> </div>
+            <div id="color" class="orange" onclick="pickColor('orange')"> </div>
+            <div id="color" class="yellow" onclick="pickColor('yellow')"> </div>
+            <div id="color" class="green" onclick="pickColor('green')"> </div>
+            <div id="color" class="blue" onclick="pickColor('blue')"> </div>
+            <div id="color" class="purple" onclick="pickColor('purple')"> </div>
+            <div id="color" class="white" onclick="pickColor('white')"> </div>
+        </div>
 
-    <div id="yourGrid" class="col-md-2">
-        <p id="stsByRows" class="userInput">Stitches/Rows: </p>
-        <p id="gauge" class="userInput">Gauge: </p>
+        <div id="yourGrid" class="col-md-2">
+            <p id="stsByRows" class="userInput">Stitches/Rows: </p>
+            <p id="gauge" class="userInput">Gauge: </p>
+        </div>
+        <div id="topBarButtons" class="col-md-2">
+            <button id="printButton" onclick="printPage()">Print</button>
+            <button id="optionsReset" class="optionsButton">Create Grid</button>
+        </div>
     </div>
-    <div id="topBarButtons" class="col-md-2">
-        <button id="printButton" onclick="printPage()">Print</button>
-        <button id="optionsReset" class="optionsButton">Create Grid</button>
-    </div>
-    <div id="gridCanvas">
+    <div id="gridCanvas" class="container-fluid">
 
         <!-- grid is appended here based on user input -->
 
