@@ -21,7 +21,8 @@ $(document).ready(function() {
 //                              Global Variables                                    //
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
-var pickedColor = "rgb(0, 0, 0)";
+var pickedColor = "black";
+
 
 
 
@@ -111,7 +112,7 @@ function newGrid(Grid) {
 
     // logic to establish # of columns containing 1 div each
     for (j; j <= Grid.sts; j++) {
-        $('#gridCanvas').append("<div class='pixelCol' id='pixelCol" + j + "'><div class='pixel' id='pixel" + j + "'onclick='drawColor()'></div></div>");
+        $('#gridCanvas').append("<div class='pixelCol' id='pixelCol" + j + "'><div class='pixel' id='pixelCol" + j + " " + 'pixelRow' + 1 + "'onclick='drawColor()'></div></div>");
     }
 
     // this adds divs to each column per the # of inputted rows
@@ -126,53 +127,62 @@ function newGrid(Grid) {
 }
 
 
+
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
 //                Function to Choose Color with which to Draw                       //
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
+//user clicks on .color in #colorPalette to activate this function
 function pickColor(color) {
     // check if a color has been selected, if not then use black
     if (color == "black") {
-        pickedColor = "rgb(0, 0, 0)";
+        pickedColor = "black";
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "red") {
-        pickedColor = 'rgb(255, 0, 0)';
+        pickedColor = "red";
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "yellow") {
-        pickedColor = 'rgb(255, 255, 0)';
+        pickedColor = "yellow";
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "orange") {
-        pickedColor = 'rgb(255, 175, 0)';
+        pickedColor = "orange";
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "green") {
-        pickedColor = "rgb(0, 255, 0)";
+        pickedColor = "green";
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "blue") {
-        pickedColor = 'rgb(0, 0, 255)';
+        pickedColor = 'blue';
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "purple") {
-        pickedColor = "rgb(138, 43, 226)";
+        pickedColor = "purple";
         console.log("new pickedColor: ", pickedColor);
 
     } else if (color == "white") {
-        pickedColor = "rgb(255, 255, 255)";
+        pickedColor = "white";
         console.log("new pickedColor: ", pickedColor);
 
     } else {
-        pickedColor = "rgb(0, 0, 0)";
+        pickedColor = "black";
     }
     return pickedColor;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+//                Function to take pickedColor and add some Class                   //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
 
-
+// function checkColor(color) {
+//     if (color == 'rgb(0, 0, 0)') {}
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
@@ -197,165 +207,43 @@ function drawColor() {
     });
     $('#gridCanvas').click(function() {
         setPixelColor(event);
+        // console.log("pickedColor in drawColor(): ", pickedColor);
+        // console.log("colorName in drawColor(): ", pickedColor.colorName);
     });
 
     function switchMouseState(event) {
         mousingDown = event.type === 'mousedown';
         console.log("swicthMouseState() activated");
     }
+    // need to get pickedColor and color in here
+    // function setPixelColor(event) {
+    //     // get at invididual .pixels
+    //     var thisPixel = event.target;
+    //     $(thisPixel).addClass(pickedColor.colorName);
+    //     console.log("this in setPixelColor(): ", thisPixel);
+    //     // console.log("pickedColor in setPixelColor(): ", pickedColor);
+    // }
 
     function setPixelColor(event) {
-        console.log("setPixelColor() activated");
-        if (event.type === 'click') {
-            event.target.style.backgroundColor = pickedColor;
-            console.log("You colored pixel: ", event.target.id);
-        } else if (mousingDown) {
-            event.target.style.backgroundColor = pickedColor;
-            console.log("You colored pixel: ", event.target.id);
+        if (event.type === 'click' && $(event.target).attr('class') === 'pixel') {
+            var thisPixel = event.target;
+            $(thisPixel).addClass(pickedColor);
+            console.log("this in setPixelColor(): ", thisPixel);
+        } else if (mousingDown && $(event.target).attr('class') === 'pixel') {
+            var thisPixel = event.target;
+            $(thisPixel).addClass(pickedColor);
+            console.log("this in setPixelColor(): ", thisPixel);
         }
     }
+
+
+    // function setPixelColor(event) {
+    //     if (event.type === 'click') {
+    //         event.target.style.backgroundColor = pickedColor;
+    //         console.log("You colored pixel: ", event.target.id);
+    //     } else if (mousingDown) {
+    //         event.target.style.backgroundColor = pickedColor;
+    //         console.log("You colored pixel: ", event.target.id);
+    //     }
+    // }
 }
-
-
-
-
-
-
-
-
-// // function deleteData() {
-//     var testdataID = $(this).attr("id"); //this = #dataTable, .delete
-//
-//     $.ajax({
-//         type: 'DELETE',
-//         url: '/testRoute/' + testdataID,
-//         success: function() {
-//             console.log('DELETED ITEM: ID:', testdataID);
-//
-//             $('#dataTable').empty();
-//             getData();
-//         },
-//         error: function() {
-//             console.log("error in delete");
-//         }
-//     });
-// }
-//
-// function updateData() {
-//     var testdata = {};
-//     //goes into data table to grab all data within.
-//     var inputs = $(this).parent().children().serializeArray();
-//     $.each(inputs, function(i, field) {
-//         testdata[field.name] = field.value;
-//
-//         //CHECK FOR INT IF INPUTING NUM:
-//         checkNumInField(field, "item_amount");
-//     });
-//     console.log("updateData searches through:", testdata);
-//
-//     //finds updateButton's appened id refrencing rowValue.id
-//     var testdataID = $(this).parent().attr('id');
-//
-//     $.ajax({
-//         type: 'PUT',
-//         url: '/testRoute/' + testdataID,
-//         data: testdata,
-//         success: function() {
-//             $('#dataTable').empty();
-//             getData();
-//         },
-//         error: function() {
-//
-//         }
-//     });
-//
-// }
-//
-// function postData() {
-//     event.preventDefault();
-//
-//     var testdata = {};
-//
-//     //dataForm is the input fields
-//     $.each($('#dataForm').serializeArray(), function(i, field) {
-//         testdata[field.name] = field.value;
-//         checkNumInField(field, "item_amount");
-//     });
-//
-//     $.ajax({
-//         type: 'POST',
-//         url: '/testRoute',
-//         data: testdata,
-//         success: function() {
-//             console.log('/POST success function ran');
-//             //empty and repopulate #dataTable
-//             $('#dataTable').empty();
-//             getData();
-//
-//         },
-//         error: function() {
-//             console.log('/POST didnt work');
-//         }
-//
-//     });
-//
-//
-// }
-//
-// function getData() {
-//     $.ajax({
-//         type: 'GET',
-//         url: '/testRoute',
-//         success: function(data) {
-//             console.log('/GET success function ran');
-//             buildTableHeader(['Item ID', 'Item Name', 'Item Amount']);
-//
-//             data.forEach(function(rowData, i) {
-//                 var $el = $('<div id="' + rowData.id + '"></div>');
-//
-//                 var dataTable = ['id', 'item_name', 'item_amount'];
-//                 dataTable.forEach(function(property) {
-//
-//                     var $input = $('<input type="text" id="' + property + '"name="' + property + '" />');
-//                     $input.val(rowData[property]);
-//                     $el.append($input);
-//
-//                 });
-//
-//                 $el.append('<button id=' + rowData.id + ' class="update">Update</button>');
-//                 $el.append('<button id=' + rowData.id + ' class="delete">Delete</button>');
-//                 $el.append('<button id=' + rowData.id + ' class="checkInOut">Check In</button>');
-//
-//                 $('#dataTable').append($el);
-//             });
-//         },
-//
-//         error: function(response) {
-//             console.log('GET /testRoute fail. No data could be retrieved!');
-//         },
-//     });
-//
-// }
-//
-//
-// // Display/Quality of Life
-// function checkNumInField(theField, numField) {
-//     if (theField.name == numField) {
-//         if (theField.value * 0 !== 0) {
-//             alert("You must input numbers in 'Amount' field");
-//             location.reload();
-//         }
-//     }
-// }
-//
-// function buildTableHeader(headerList) {
-//
-//     var $header = $('<div id="dataTableHead"></div>');
-//     headerList.forEach(function(property) {
-//
-//         var $input = $('<input type="text" id="' + property + '"name="' + property + '" />');
-//         $input.val(property);
-//         $header.append($input);
-//         $('#dataTable').append($header);
-//     });
-// }
