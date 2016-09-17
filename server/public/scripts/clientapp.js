@@ -3,17 +3,7 @@ $(document).ready(function() {
 
     // //button listeners
     $('.optionsButton').on('click', toggleOptions);
-    // $('.resetButton').on('click', refreshPage);
 
-    // $('body').child('h2').child('resetButton').on('click', refreshPage);
-    // $('.chooseGrid').hide();
-
-
-
-
-    // // $('#submitTestData').on("click", postData);
-    // $('#dataTable').on("click", ".delete", deleteData);
-    // $('#dataTable').on("click", ".update", updateData);
 }); // end doc ready
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +12,6 @@ $(document).ready(function() {
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
 var pickedColor = "black";
-
 
 
 
@@ -49,7 +38,6 @@ function refreshPage() {
 }
 
 function printPage() {
-
     window.print();
 }
 
@@ -135,54 +123,12 @@ function newGrid(Grid) {
 //////////////////////////////////////////////////////////////////////////////////////
 //user clicks on .color in #colorPalette to activate this function
 function pickColor(color) {
-    // check if a color has been selected, if not then use black
-    if (color == "black") {
-        pickedColor = "black";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "red") {
-        pickedColor = "red";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "yellow") {
-        pickedColor = "yellow";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "orange") {
-        pickedColor = "orange";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "green") {
-        pickedColor = "green";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "blue") {
-        pickedColor = 'blue';
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "purple") {
-        pickedColor = "purple";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else if (color == "white") {
-        pickedColor = "white";
-        console.log("new pickedColor: ", pickedColor);
-
-    } else {
-        pickedColor = "black";
-    }
+    pickedColor = color;
     return pickedColor;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////
-//                                                                                  //
-//                Function to take pickedColor and add some Class                   //
-//                                                                                  //
-//////////////////////////////////////////////////////////////////////////////////////
 
-// function checkColor(color) {
-//     if (color == 'rgb(0, 0, 0)') {}
-// }
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
@@ -195,55 +141,27 @@ function drawColor() {
     window.addEventListener('mousedown', switchMouseState);
     window.addEventListener('mouseup', switchMouseState);
 
-    // $('pixel').mousedown(function() {
-    //     switchMouseState(event);
-    // });
-    // $('pixel').mouseup(function() {
-    //     switchMouseState(event);
-    // });
-
     $('#gridCanvas').mouseover(function() {
         setPixelColor(event);
     });
     $('#gridCanvas').click(function() {
         setPixelColor(event);
-        // console.log("pickedColor in drawColor(): ", pickedColor);
-        // console.log("colorName in drawColor(): ", pickedColor.colorName);
     });
 
     function switchMouseState(event) {
         mousingDown = event.type === 'mousedown';
         console.log("swicthMouseState() activated");
     }
-    // need to get pickedColor and color in here
-    // function setPixelColor(event) {
-    //     // get at invididual .pixels
-    //     var thisPixel = event.target;
-    //     $(thisPixel).addClass(pickedColor.colorName);
-    //     console.log("this in setPixelColor(): ", thisPixel);
-    //     // console.log("pickedColor in setPixelColor(): ", pickedColor);
-    // }
 
     function setPixelColor(event) {
-        if (event.type === 'click' && $(event.target).attr('class') === 'pixel') {
+        if (event.type === 'click' && $(event.target).attr('class').match(/pixel/)) {
             var thisPixel = event.target;
             $(thisPixel).addClass(pickedColor);
             console.log("this in setPixelColor(): ", thisPixel);
-        } else if (mousingDown && $(event.target).attr('class') === 'pixel') {
+        } else if (mousingDown && $(event.target).attr('class').match(/pixel/)) {
             var thisPixel = event.target;
             $(thisPixel).addClass(pickedColor);
             console.log("this in setPixelColor(): ", thisPixel);
         }
     }
-
-
-    // function setPixelColor(event) {
-    //     if (event.type === 'click') {
-    //         event.target.style.backgroundColor = pickedColor;
-    //         console.log("You colored pixel: ", event.target.id);
-    //     } else if (mousingDown) {
-    //         event.target.style.backgroundColor = pickedColor;
-    //         console.log("You colored pixel: ", event.target.id);
-    //     }
-    // }
 }
